@@ -1,0 +1,7 @@
+#image files
+positiveSamples/*.jpg
+positiveSamples/*.png
+positiveSamples/*.bmp
+negativeSamples/*.jpg
+negativeSamples/*.png
+negativeSamples/*.bmp
