@@ -1,14 +1,15 @@
 
 % load('..\labeledImages\3picstes1.mat');
-load('stopSignsAndCars.mat');
-
+cd('../labeledImages');
+load('boundedImages.mat');
+cd('../src');
 % posInstances = gTruth.LabelData.stopSign;
 posInstances = stopSignsAndCars(: , 1:2);
 
-posImages = fullfile(matlabroot,'toolbox','vision','visiondata','stopSignImages');
-addpath(posImages);
+% posImages = fullfile(matlabroot,'toolbox','vision','visiondata','stopSignImages');
+% addpath(posImages);
 
-negImages = fullfile(matlabroot,'toolbox','vision','visiondata','nonStopSigns');
+negImages = fullfile('..','negativeImages');
 negIDS = imageDatastore(negImages);
 cd('../models');
-trainCascadeObjectDetector('stopSignDetector.xml',posInstances,negImages,'FalseAlarmRate',0.0001,'NumCascadeStages',5);
+trainCascadeObjectDetector('stopSignDetector.xml',posInstances,negImages,'FalseAlarmRate',0.01,'NumCascadeStages',5);
