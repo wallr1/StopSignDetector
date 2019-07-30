@@ -78,9 +78,11 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+cd('../positiveImages');
 image = uigetfile(fullfile('*'));
 axes(handles.axes1);
 imshow(image);
+cd('../src');
 
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hObject, eventdata, handles)
@@ -88,6 +90,6 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 image = getimage(handles.axes1);
-toGray = rgb2gray(image);
+detected = stopSignDetector(image);
 axes(handles.axes1);
-imshow(toGray);
+imshow(detected);
