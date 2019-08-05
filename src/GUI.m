@@ -22,7 +22,7 @@ function varargout = GUI(varargin)
 
 % Edit the above text to modify the response to help GUI
 
-% Last Modified by GUIDE v2.5 29-Jul-2019 20:48:10
+% Last Modified by GUIDE v2.5 30-Jul-2019 15:11:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -78,7 +78,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-cd('../testImages');
+cd('../positiveImages');
 image = uigetfile(fullfile('*'));
 axes(handles.axes1);
 imshow(image);
@@ -93,3 +93,8 @@ image = getimage(handles.axes1);
 [status , detected] = stopSignDetector(image);
 axes(handles.axes1);
 imshow(detected);
+myString = 'Stop Sign Detected';
+if status == 0
+    myString = 'No Stop Sign Found';
+end
+set(handles.status, 'String', myString);
