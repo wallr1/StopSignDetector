@@ -81,7 +81,10 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 cd('../positiveImages');
 image = uigetfile(fullfile('*'));
 axes(handles.axes1);
-image = imresize(imread(image) , [500 NaN]);
+image = imread(image);
+if length(image(:,1)) > 800
+    image = imresize(image , [800 NaN]);
+end
 imshow(image);
 cd('../src');
 
